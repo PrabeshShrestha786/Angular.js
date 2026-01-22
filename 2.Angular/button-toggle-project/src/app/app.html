@@ -1,0 +1,14 @@
+<h1>Property and Event Binding</h1>
+
+<button
+  (click)="onClick()"
+  [style.backgroundColor]="isOn ? 'green' : 'red'"
+>
+  Click me
+</button>
+
+<div *ngIf="show">
+  <p>{{ text }}</p>
+
+  <input type="text" [(ngModel)]="text" />
+</div>

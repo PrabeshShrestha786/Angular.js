@@ -1,0 +1,12 @@
+<div>
+  <h1>{{ title }}</h1>
+  <p>{{ name }}</p>
+
+  <app-yesterdays-weather [data]="yesterdayWeather"></app-yesterdays-weather>
+</div>
+
+<!-- This solution creates a new component that receives weather text from its parent component. 
+The parent (App) defines a string variable called yesterdayWeather. 
+In the template, the parent passes that value to the child component using property binding: [data]="yesterdayWeather". 
+Inside the child component, @Input() data allows the child to accept the value coming from the parent. 
+Finally, the child template prints the received value using interpolation with {{ data }}.-->
