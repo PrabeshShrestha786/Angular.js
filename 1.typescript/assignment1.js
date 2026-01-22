@@ -1,12 +1,4 @@
-function arraySum(numbers) {
-    let sum = 0;
-
-    for (let i = 0; i < numbers.length; i++) {
-        sum += numbers[i];
-    }
-
-    return sum;
+function printInfo(name, occupation, wage) {
+    return "Hey, ".concat(name, ". You are an ").concat(occupation, " and your hourly wage is ").concat(wage, " dollars.");
 }
-
-// Test the function
-console.log(arraySum([5, 5, 1, 3]));
+console.log(printInfo("Prabesh", "Engineer", 25));
