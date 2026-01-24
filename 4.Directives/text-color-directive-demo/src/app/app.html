@@ -1,0 +1,31 @@
+<div style="padding: 20px; font-family: Arial, sans-serif;">
+  <h1>ngSwitch Example</h1>
+
+  <button (click)="setView('name')">Name</button>
+  <button (click)="setView('age')">Age</button>
+  <button (click)="setView('job')">Job</button>
+
+  <hr />
+
+  <div [ngSwitch]="view">
+    <div *ngSwitchCase="'name'">
+      <h2>Name</h2>
+      <p>My name is Prabesh.</p>
+    </div>
+
+    <div *ngSwitchCase="'age'">
+      <h2>Age</h2>
+      <p>I am 28 years old.</p>
+    </div>
+
+    <div *ngSwitchCase="'job'">
+      <h2>Job</h2>
+      <p>I am a software developer.</p>
+    </div>
+
+    <div *ngSwitchDefault>
+      <h2>Welcome</h2>
+      <p>Please select a button above.</p>
+    </div>
+  </div>
+</div>

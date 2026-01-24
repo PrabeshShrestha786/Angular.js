@@ -1,0 +1,18 @@
+<p class="desc">
+  This application generates a random number (1–100). If you enter a number, it will be added to the random number.
+</p>
+
+<label>
+  Enter a number to add:
+  <input type="number" [(ngModel)]="inputNumber" placeholder="e.g. 5" />
+</label>
+
+<br /><br />
+
+<button (click)="generateRandomNumber()">
+  Generate Random Number
+</button>
+
+<p *ngIf="randomNumber !== null && result !== null">
+  {{ randomNumber }} + {{ inputNumber ?? 0 }} = {{ result }}
+</p>

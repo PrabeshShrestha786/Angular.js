@@ -1,0 +1,18 @@
+<h2>Custom Pipe Demo</h2>
+<p>
+  This example uses a custom pipe that removes all non-letter characters
+  and reverses the remaining string.
+</p>
+
+<input
+  type="text"
+  [(ngModel)]="inputText"
+  placeholder="Enter a string"
+/>
+
+<button (click)="transformText()">Transform</button>
+
+<div *ngIf="submittedText">
+  <p><b>Original input:</b> {{ submittedText }}</p>
+  <p><b>Transformed output:</b> {{ submittedText | stringTransform }}</p>
+</div>

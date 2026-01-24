@@ -1,0 +1,174 @@
+<div class="page">
+  <header class="topbar">
+    <div class="brand">Final Project</div>
+
+    <nav class="nav">
+      <button (click)="setView('home')" [class.active]="view==='home'">Home</button>
+      <button (click)="setView('calc')" [class.active]="view==='calc'">Calculator</button>
+      <button (click)="setView('editor')" [class.active]="view==='editor'">Text Editor</button>
+      <button (click)="setView('quiz')" [class.active]="view==='quiz'">Quiz</button>
+    </nav>
+  </header>
+
+  <main class="content" [ngSwitch]="view">
+
+    <!-- ================= VIEW 1: HOME ================= -->
+    <section *ngSwitchCase="'home'" class="card">
+      <h1>Home</h1>
+      <p>
+        This project has 4 views built using Angular <b>structural directives</b>.
+        Navigation uses <code>ngSwitch</code> to show one view at a time.
+      </p>
+
+      <ul>
+        <li>
+          <b>View 1 (Home):</b> Explains all views and how they were done.
+          Uses simple HTML and text.
+        </li>
+        <li>
+          <b>View 2 (Calculator):</b> A calculator that supports
+          <b>+</b>, <b>-</b>, <b>*</b>, <b>/</b>.
+          Uses inputs with <code>ngModel</code> and shows result with <code>*ngIf</code>.
+        </li>
+        <li>
+          <b>View 3 (Text Editor):</b> Type text and press buttons to transform it.
+          Has at least two operations (Uppercase, Lowercase) + extra (Clear, Word Count).
+        </li>
+        <li>
+          <b>View 4 (Quiz):</b> 3 multiple-choice questions.
+          Uses <code>*ngFor</code> to render questions/options and <code>*ngIf</code> to show results after submit.
+        </li>
+      </ul>
+
+      <p class="muted">
+        Key directives used: <code>ngSwitch</code>, <code>ngIf</code>, <code>ngFor</code>.
+      </p>
+    </section>
+
+    <!-- ================= VIEW 2: CALCULATOR ================= -->
+    <section *ngSwitchCase="'calc'" class="card">
+      <h1>Calculator</h1>
+
+      <div class="row">
+        <label>
+          Number A
+          <input type="number" [(ngModel)]="numA" />
+        </label>
+
+        <label>
+          Operation
+          <select [(ngModel)]="op">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+          </select>
+        </label>
+
+        <label>
+          Number B
+          <input type="number" [(ngModel)]="numB" />
+        </label>
+      </div>
+
+      <div class="btnRow">
+        <button (click)="calculate()">Calculate</button>
+        <button class="secondary" (click)="clearCalc()">Clear</button>
+      </div>
+
+      <p *ngIf="calcError" class="error">{{ calcError }}</p>
+
+      <div *ngIf="calcResult !== null" class="result">
+        Result: <b>{{ calcResult }}</b>
+      </div>
+
+      <p class="muted">
+        Uses <code>ngModel</code> for input binding and <code>*ngIf</code> to show error/result.
+      </p>
+    </section>
+
+    <!-- ================= VIEW 3: TEXT EDITOR ================= -->
+    <section *ngSwitchCase="'editor'" class="card">
+      <h1>Text Editor</h1>
+
+      <textarea
+        [(ngModel)]="textValue"
+        class="textarea"
+        placeholder="Type something here..."
+      ></textarea>
+
+      <div class="btnRow">
+        <button (click)="toUpper()">UPPERCASE</button>
+        <button (click)="toLower()" class="secondary">lowercase</button>
+        <button (click)="clearText()" class="danger">Clear</button>
+      </div>
+
+      <div class="infoRow">
+        <span>Characters: <b>{{ textValue.length }}</b></span>
+        <span>Words: <b>{{ wordCount() }}</b></span>
+      </div>
+
+      <p *ngIf="editorMessage" class="muted">{{ editorMessage }}</p>
+
+      <p class="muted">
+        Two+ operations: uppercase, lowercase (and extra: clear + word count).
+      </p>
+    </section>
+
+    <!-- ================= VIEW 4: QUIZ ================= -->
+    <section *ngSwitchCase="'quiz'" class="card">
+      <h1>Quiz</h1>
+      <p class="muted">Answer all 3 questions and press Submit.</p>
+
+      <div class="quiz">
+        <div class="question" *ngFor="let q of questions; let qi = index">
+          <h3>Q{{ qi + 1 }}. {{ q.text }}</h3>
+
+          <div class="options">
+            <label
+              class="option"
+              *ngFor="let opt of q.options; let oi = index"
+            >
+              <input
+                type="radio"
+                [name]="'q' + qi"
+                [checked]="answers[qi] === oi"
+                (change)="selectAnswer(qi, oi)"
+                [disabled]="quizSubmitted"
+              />
+              {{ opt }}
+            </label>
+          </div>
+
+          <!-- Show correctness after submit -->
+          <div *ngIf="quizSubmitted" class="feedback">
+            <span *ngIf="isCorrect(qi)" class="good">✅ Correct</span>
+            <span *ngIf="!isCorrect(qi)" class="bad">
+              ❌ Wrong — Correct answer: <b>{{ correctAnswerText(qi) }}</b>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="btnRow">
+        <button (click)="submitQuiz()" [disabled]="quizSubmitted">Submit</button>
+        <button class="secondary" (click)="resetQuiz()">Reset</button>
+      </div>
+
+      <div *ngIf="quizSubmitted" class="result">
+        You got <b>{{ quizScore }}</b> / <b>{{ questions.length }}</b> correct.
+      </div>
+
+      <p class="muted">
+        Uses <code>*ngFor</code> for questions/options and <code>*ngIf</code> for results.
+      </p>
+    </section>
+
+    <!-- Default fallback -->
+    <section *ngSwitchDefault class="card">
+      <h1>Unknown View</h1>
+      <p>Please choose a view from the top menu.</p>
+    </section>
+
+  </main>
+</div>

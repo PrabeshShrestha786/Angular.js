@@ -1,0 +1,79 @@
+<div class="container">
+  <h1>Structural Directives Demo</h1>
+
+  <!-- ✅ Added functionality: shows click count -->
+  <p class="muted">
+    Tab button clicks: <b>{{ clickCount }}</b> (saved even after refresh)
+  </p>
+
+  <!-- ngSwitch "tabs" -->
+  <div class="tabs">
+    <button (click)="setView('if')" [class.active]="view === 'if'">ngIf</button>
+    <button (click)="setView('for')" [class.active]="view === 'for'">ngFor</button>
+    <button (click)="setView('switch')" [class.active]="view === 'switch'">ngSwitch</button>
+
+    <!-- ✅ Added functionality -->
+    <button class="reset" (click)="reset()">Reset</button>
+  </div>
+
+  <hr />
+
+  <!-- ngSwitch renders ONE of these sections -->
+  <div [ngSwitch]="view" class="panel">
+
+    <!-- ============ ngIf example ============ -->
+    <div *ngSwitchCase="'if'">
+      <h2>ngIf: Show / Hide Image</h2>
+
+      <button (click)="toggleImage()">
+        {{ showImage ? 'Hide Image' : 'Show Image' }}
+      </button>
+
+      <div class="spacer"></div>
+
+      <img
+        *ngIf="showImage"
+        src="https://picsum.photos/520/300"
+        alt="Random image"
+        class="img"
+      />
+
+      <p class="muted">
+        Explanation: <code>*ngIf</code> adds/removes the image element from the DOM.
+      </p>
+    </div>
+
+    <!-- ============ ngFor example ============ -->
+    <div *ngSwitchCase="'for'">
+      <h2>ngFor: List of Countries</h2>
+
+      <ul>
+        <li *ngFor="let c of countries">{{ c }}</li>
+      </ul>
+
+      <p class="muted">
+        Explanation: <code>*ngFor</code> repeats the <code>&lt;li&gt;</code> for each country.
+      </p>
+    </div>
+
+    <!-- ============ ngSwitch example ============ -->
+    <div *ngSwitchCase="'switch'">
+      <h2>ngSwitch: Different Templates</h2>
+
+      <p>
+        You are currently viewing: <b>{{ view }}</b>
+      </p>
+
+      <p class="muted">
+        Explanation: <code>[ngSwitch]</code> chooses which template to render based on the value.
+      </p>
+    </div>
+
+    <!-- default fallback -->
+    <div *ngSwitchDefault>
+      <h2>Default View</h2>
+      <p>If no case matches, this view is shown.</p>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<h2>Built-in Pipes Demo</h2>
+<p>This page shows how Angular pipes transform values in the template.</p>
+
+<hr />
+
+<p><b>DatePipe:</b> {{ today | date:'fullDate' }}</p>
+<p><b>CurrencyPipe:</b> {{ amount | currency:'EUR':'symbol':'1.2-2' }}</p>
+<p><b>PercentPipe:</b> {{ percent | percent:'1.1-2' }}</p>
+
+<hr />
+
+<p><b>LowercasePipe:</b> {{ message | lowercase }}</p>
+<p><b>UppercasePipe:</b> {{ message | uppercase }}</p>
+
+<hr />
+
+<p><b>JsonPipe (debug):</b></p>
+<pre>{{ user | json }}</pre>

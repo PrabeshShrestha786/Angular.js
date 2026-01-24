@@ -1,0 +1,164 @@
+.page {
+  font-family: Arial, sans-serif;
+  background: #f6f7fb;
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: white;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.brand {
+  font-weight: 700;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
+
+button.active {
+  border-width: 2px;
+}
+
+button.secondary {
+  background: #f3f3f3;
+}
+
+button.danger {
+  border-color: #f0b3b3;
+  background: #fff5f5;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.content {
+  padding: 18px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e7e7e7;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.row {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 12px 0;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+
+input, select, textarea {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 160px;
+  resize: vertical;
+}
+
+.btnRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.infoRow {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: #666;
+  margin-top: 12px;
+}
+
+.error {
+  color: #b40000;
+  margin-top: 12px;
+}
+
+.result {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+}
+
+.quiz {
+  margin-top: 10px;
+}
+
+.question {
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+
+.options {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.option {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.feedback {
+  margin-top: 8px;
+}
+
+.good {
+  color: #0a7a24;
+  font-weight: 600;
+}
+
+.bad {
+  color: #b40000;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .row { grid-template-columns: 1fr; }
+}
